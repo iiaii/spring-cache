@@ -26,13 +26,6 @@
 - `@Cacheable(key = "'jeongpro'  + #param1 + #param2")` 처럼 여러 파라미터를 하나의 키로 지정할 수 있다.
 - Ehcache의 경우 별도의 xml 파일 같은 것을 만들어서 임시저장경로, 힙에 생성될 최대 객체수, 캐시 삭제 여부, 캐시가 유지될 시간, 캐시 삭제 전략 등을 설정한다.
 
-```java
-
-public List<Product> bestProduct(User user, LocalDateTime time, ProductType productType){
-
-
-```
-
 
 ---
 ### 스프링 부트 캐시 적용
