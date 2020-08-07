@@ -5,6 +5,18 @@
 
 스프링 캐시 PSA는 AOP가 사용된다. 캐시 기능을 담은 어드바이스는 스프링이 제공하고, 이를 적용할 대상 빈과 메서드를 선정하고 속성을 부여하는 작업은 기본 AOP 설정 방법을 이용하거나, 어노테이션을 사용한다. 
 
+
+---
+### 주요 메서드
+
+- @EnableCaching : 메인 클래스 위에 붙여서 캐시 사용 여부
+- @Cacheable : 캐시 적용
+- @CacheEvict : 캐시 제거
+- @CachePut : 메서드 실행을 방해하지 않고 캐시를 업데이트
+- @Caching : 메서드에 적용할 여러 캐시 조작을 그룹화
+- @CacheConfig : 클래스 수준에서 캐시 관련 설정
+
+
 ---
 ### 주요 특징
 
@@ -21,15 +33,6 @@ public List<Product> bestProduct(User user, LocalDateTime time, ProductType prod
 
 ```
 
----
-### 주요 메서드
-
-- @EnableCaching : 메인 클래스 위에 붙여서 캐시 사용 여부
-- @Cacheable : 캐시 적용
-- @CacheEvict : 캐시 제거
-- @CachePut : 메서드 실행을 방해하지 않고 캐시를 업데이트
-- @Caching : 메서드에 적용할 여러 캐시 조작을 그룹화
-- @CacheConfig : 클래스 수준에서 캐시 관련 설정
 
 ---
 ### 스프링 부트 캐시 적용
