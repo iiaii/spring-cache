@@ -1,20 +1,29 @@
-# spring-cache
+# Spring Cache
 
 
 캐시는 비용이 큰 요청 (DB 접근, 외부 요청) 등에서 사용한다. 하지만 반복적으로 동일한 결과를 주는 작업에 사용되지 않으면, 즉 매번 다른 결과를 반환하는 작업에는 캐시가 적용되더라도 오히려 성능이 떨어진다. (캐시는 hit 해야 의미가 있음)
 
-스프링 캐시 PSA는 AOP가 사용된다. 캐시 기능을 담은 어드바이스는 스프링이 제공하고, 이를 적용할 대상 빈과 메서드를 선정하고 속성을 부여하는 작업은 기본 AOP 설정 방법을 이용하거나, 어노테이션을 사용한다. 
+스프링 캐시는 추상화 인터페이스를 제공하고 스프링 캐시 PSA 내부적으로 AOP가 사용된다. 캐시 기능을 담은 어드바이스는 스프링이 제공하고, 이를 적용할 대상 빈과 메서드를 선정하고 속성을 부여하는 작업은 기본 AOP 설정 방법을 이용하거나, 어노테이션을 사용한다. 
+
+스프링 캐시는 실제로 캐싱 데이터를 저장하는 Provider를 설정할 수 있다. 
+
+- Generic
+- JCache
+- EhCache
+- Hazelcast
+- Redis
+- ...
 
 
 ---
-### 주요 메서드
+### 주요 Annotations
 
 - @EnableCaching : 메인 클래스 위에 붙여서 캐시 사용 여부
-- @Cacheable : 캐시 적용
+- @Cacheable : 캐시 적용 (이 어노테이션이 선언된 메서드는 결과를 캐시에 저장하고, 다음 호출에서는 메서드의 내부 로직을 수행하지 않고 캐싱된 결과를 바로 리턴)
 - @CacheEvict : 캐시 제거
 - @CachePut : 메서드 실행을 방해하지 않고 캐시를 업데이트
 - @Caching : 메서드에 적용할 여러 캐시 조작을 그룹화
-- @CacheConfig : 클래스 수준에서 캐시 관련 설정
+- @CacheConfig : 클래스 레벨에서 캐시 관련 설정 (캐시 작업에 사용할 캐시 이름을 단일 클래스로 정의할 수 있음)
 
 
 ---
@@ -67,3 +76,19 @@ public Book findBookByNameWithCache(String name) {
     return bookRepository.findByName(name).orElseThrow(() -> new BookNotFoundException(name));
 }
 ```
+
+---
+### Ref
+
+- [EHCache vs Hazelcast](https://roynus.tistory.com/913)
+- [Hazelcast](https://brunch.co.kr/@springboot/56)
+- [EHCache](https://javacan.tistory.com/entry/133)
+- [Cassandra](https://nicewoong.github.io/development/2018/02/11/cassandra-feature/)
+
+---
+### 참고
+
+- Cassandra : Key-space > Table > Row > Column name : Column value
+- Mongodb : db > collection > document > key : value
+- RDBMS : DB > Table > row > column
+- ElasticSearcvh : index > type > document > key : value
