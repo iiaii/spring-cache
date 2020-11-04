@@ -42,9 +42,16 @@
 1. 의존성 추가
 
 ```maven
+<!-- log4j2 -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-log4j2</artifactId>
+</dependency>
+
+<!-- cache -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
 </dependency>
 ```
 
